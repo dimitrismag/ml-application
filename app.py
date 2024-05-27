@@ -6,6 +6,8 @@ from sklearn.preprocessing import LabelEncoder
 
 
 
+
+
 with open('model.joblib', 'rb') as file:
     data=joblib.load(file)
     reg=data['model']
@@ -20,6 +22,7 @@ with open('model.joblib', 'rb') as file:
 
 
 app = Flask(__name__)
+
 @app.route('/')
 def home():
     return "Hello World"
