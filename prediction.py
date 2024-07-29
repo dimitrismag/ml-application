@@ -4,7 +4,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 
 
-df=pd.read_excel(r"C:\Users\PC\Desktop\master thesis(ΑυτόματηΑνάκτηση).xlsx")
+df=pd.read_excel(r"C:\Users\PC\Desktop\master thesis(ΑυτόματηΑνάκτησηfinished).xlsx")
+df
 from sklearn.preprocessing import LabelEncoder
 le_Location = LabelEncoder()
 df['Location'] = le_Location.fit_transform(df['Location'])
@@ -15,8 +16,8 @@ df['Construction_material'] = le_Construction_material.fit_transform(df['Constru
 df["Construction_material"].unique()
 
 le_Close_to_the_sea = LabelEncoder()
-df['Close_to_the_sea'] = le_Close_to_the_sea.fit_transform(df['Close_to_the_sea'])
-df["Close_to_the_sea"].unique()
+df['Close_to_the_sea_(<500m)'] = le_Close_to_the_sea.fit_transform(df['Close_to_the_sea_(<500m)'])
+df["Close_to_the_sea_(<500m)"].unique()
 
 le_Close_to_the_center = LabelEncoder()
 df['Close_to_the_center'] = le_Close_to_the_center.fit_transform(df['Close_to_the_center'])
@@ -38,27 +39,35 @@ le_Parking = LabelEncoder()
 df['Parking'] = le_Parking.fit_transform(df['Parking'])
 df["Parking"].unique()
 
+df['View'].fillna('Unknown', inplace=True)
+
+le_View = LabelEncoder()
+df['View'] = le_View.fit_transform(df['View'])
+df["View"].unique
+
 X=df.drop(columns=['Price'])
 y=df['Price']
 
-X_train, X_test, y_train, y_test=train_test_split(X,y,test_size=0.2,random_state=4)
+X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.3, random_state=42) 
+X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.333, random_state=42)  # 20% validation, 10% test
 
-reg=RandomForestRegressor()
-
+reg = RandomForestRegressor(n_estimators=100, random_state=42)
 reg.fit(X_train, y_train)
-reg.get_params()
 
-y_pred=reg.predict(X_train)
+y_test_pred = reg.predict(X_test)
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
-from sklearn import metrics
-print('R^2:',metrics.r2_score(y_train, y_pred))
-print('Adjusted R^2:',1 - (1-metrics.r2_score(y_train, y_pred))*(len(y_train)-1)/(len(y_train)-X_train.shape[1]-1))
-print('MAE:',metrics.mean_absolute_error(y_train, y_pred))
-print('MSE:',metrics.mean_squared_error(y_train, y_pred))
-print('RMSE:',np.sqrt(metrics.mean_squared_error(y_train, y_pred)))
+# Evaluation on test data
+test_mae = mean_absolute_error(y_test, y_test_pred)
+test_mse = mean_squared_error(y_test, y_test_pred)
+test_r2 = r2_score(y_test, y_test_pred)
+
+print(f"Test MAE: {test_mae}")
+print(f"Test MSE: {test_mse}")
+print(f"Test R²: {test_r2}")
 
 import joblib
-data = {'model': reg, 'le_Location':le_Location, 'le_Construction_material':le_Construction_material, 'le_Close_to_the_sea':le_Close_to_the_sea, 'le_Close_to_the_center':le_Close_to_the_center, 'le_Heat':le_Heat, 'le_Renovated':le_Renovated, 'le_Garden':le_Garden, 'le_Parking':le_Parking   }
-with open('model.joblib', 'wb') as file:
+data = {'model': reg, 'le_Location':le_Location, 'le_Construction_material':le_Construction_material, 'le_Close_to_the_sea':le_Close_to_the_sea, 'le_Close_to_the_center':le_Close_to_the_center, 'le_Heat':le_Heat, 'le_Renovated':le_Renovated, 'le_Garden':le_Garden, 'le_Parking':le_Parking, 'le_View':le_View   }
+with open('model.joblib2', 'wb') as file:
    joblib.dump(data, file, compress=True, protocol=-1)
 
