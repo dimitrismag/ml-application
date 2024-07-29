@@ -68,6 +68,6 @@ print(f"Test R²: {test_r2}")
 
 import joblib
 data = {'model': reg, 'le_Location':le_Location, 'le_Construction_material':le_Construction_material, 'le_Close_to_the_sea':le_Close_to_the_sea, 'le_Close_to_the_center':le_Close_to_the_center, 'le_Heat':le_Heat, 'le_Renovated':le_Renovated, 'le_Garden':le_Garden, 'le_Parking':le_Parking, 'le_View':le_View   }
-with open('model.joblib', 'wb') as file:
+with open('model.joblib2', 'wb') as file:
    joblib.dump(data, file, compress=True, protocol=-1)
 
