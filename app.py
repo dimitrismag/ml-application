@@ -32,19 +32,19 @@ def home():
 def predict():
     Location = request.form.get('Location')
     Square_feet = int(request.form.get('Square_feet'))
-    Rooms = int(request.form.get('Rooms'))
+    Bedrooms = int(request.form.get('Bedrooms'))
     Bathrooms = int(request.form.get('Bathrooms'))
     Construction_year = int(request.form.get('Construction_year'))
     Construction_material = request.form.get('Construction_material')
     Number_of_levels = int(request.form.get('Number_of_levels'))
-    Close_to_the_sea = request.form.get('Close_to_the_sea')
+    Close_to_the_sea = request.form.get('Close_to_the_sea_(<500m)')
     Close_to_the_center = request.form.get('Close_to_the_center')
     Floor = int(request.form.get('Floor'))
     Number_of_balconies = int(request.form.get('Number_of_balconies'))
     Heat = request.form.get('Heat')
     Renovated = request.form.get('Renovated')
     Garden = request.form.get('Garden')
-    Postcard = int(request.form.get('Postcard'))
+    Postcard = int(request.form.get('Postcarde'))
     Parking = request.form.get('Parking')
     View = request.form.get('View')
 
@@ -58,7 +58,7 @@ def predict():
     parking_encoded = le_Parking.transform([Parking])[0]
     View_encoded = le_View.transform([View])[0]
 
-    input_query = np.array([[location_encoded, Square_feet, Rooms, Bathrooms, Construction_year, construction_material_encoded, Number_of_levels, close_to_the_sea_encoded, close_to_the_center_encoded, Floor, Number_of_balconies, heat_encoded, renovated_encoded, garden_encoded, Postcard, parking_encoded, View_encoded]])
+    input_query = np.array([[location_encoded, Square_feet, Bedrooms, Bathrooms, Construction_year, construction_material_encoded, Number_of_levels, close_to_the_sea_encoded, close_to_the_center_encoded, Floor, Number_of_balconies, heat_encoded, renovated_encoded, garden_encoded, Postcard, parking_encoded, View_encoded]])
     result = reg.predict(input_query)[0]
     formatted_price = '{:.2f} €'.format(result)
     return jsonify({'price':formatted_price})
