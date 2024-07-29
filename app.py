@@ -44,7 +44,7 @@ def predict():
     Heat = request.form.get('Heat')
     Renovated = request.form.get('Renovated')
     Garden = request.form.get('Garden')
-    Postcard = int(request.form.get('Postcarde'))
+    Postcard = int(request.form.get('Postcard'))
     Parking = request.form.get('Parking')
     View = request.form.get('View')
 
