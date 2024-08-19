@@ -1,0 +1,70 @@
+<resources>
+    <string name="house_price_is" translatable="false">House price is:</string>
+    <string name="app_name">Hpp</string>
+    <string name="title" />
+    <string name="titles">House Price Prediction</string>
+    <string name="location">Location</string>
+    <string name="square_feet">Square feet</string>
+    <string name="rooms">Rooms</string>
+    <string name="bathrooms">Bathrooms</string>
+    <string name="construction_year">Construction year</string>
+    <string name="construction_material">Construction material</string>
+    <string name="number_of_levels">Number of levels</string>
+    <string name="close_to_the_sea">Close to the sea(500m or less)</string>
+    <string name="close_to_the_center">Close to the center(500m or less)</string>
+    <string name="floor">Floor</string>
+    <string name="number_of_balconies">Number of balconies</string>
+    <string name="heat">Heat</string>
+    <string name="renovated">Renovated</string>
+    <string name="garden">Garden</string>
+    <string name="postcard">Postcard</string>
+    <string name="parking">Parking</string>
+    <string name="predict">PREDICT</string>
+    <string name="price">THE PRICE OF YOUR HOUSE IS:</string>
+    <string name="select">Select Location</string>
+    <string name="lets_begin">LETS BEGIN</string>
+    <string name="welcome_text">Remember this is an AI model the more precise you are on your answers the better the result will be.</string>
+    <string name="welcome_to_house_price_prediction">Welcome to house price prediction</string>
+    <string name="Square_meters">Square meter</string>
+    <string name="Postcode">Postcode</string>
+    <string name="welcome_message" translatable="false"><![CDATA[<Select Language and Lets Begin>]]></string>
+    <string-array name="location_values">
+        <item>Athens</item>
+        <item>Thessaloniki</item>
+        <item>Patra</item>
+        <item>Piraeus</item>
+        <item>Larissa</item>
+        <item>Iraklion</item>
+        <item>Bolos</item>
+        <item>Ioannina</item>
+        <item>Trikala</item>
+        <item>Chalkida</item>
+        <item>Serres</item>
+        <item>Alexandroupoli</item>
+        <item>Xanthi</item>
+        <item>katerini</item>
+        <item>Kalamata</item>
+        <item>Rhodes</item>
+        <item>Chania</item>
+        <item>Komotini</item>
+        <item>Kavala</item>
+        <item>Agrinio</item>
+        <item>Drama</item>
+        <item>Veroia</item>
+    </string-array>
+    <string-array name="construction_material_values">
+        <item>brick</item>
+        <item>wood</item>
+    </string-array>
+    <string-array name="yes_no_values">
+        <item>yes</item>
+        <item>no</item>
+    </string-array>
+    <string-array name="heat_values">
+        <item>central</item>
+        <item>autonomous</item>
+        <item>gas</item>
+        <item>pellet</item>
+    </string-array>
+
+</resources>

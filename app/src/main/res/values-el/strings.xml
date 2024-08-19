@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="house_price_is">Η τιμή του ακινήτου είναι:</string>
+    <string name="app_name">Hpp</string>
+    <string name="title" />
+    <string name="titles">House Price Prediction</string>
+    <string name="location">Τοποθεσία</string>
+    <string name="square_feet">Square feet</string>
+    <string name="rooms">Υπνoδωμάτια</string>
+    <string name="bathrooms">Μπάνια</string>
+    <string name="construction_year">Έτος κατασκευής</string>
+    <string name="construction_material">Υλικό κατασκευής</string>
+    <string name="number_of_levels">Αριθμός ορόφων</string>
+    <string name="close_to_the_sea">Κοντά στη θάλασσα(≤500 μέτρα)</string>
+    <string name="close_to_the_center">Κοντά στο κέντρο(≤500 μέτρα )</string>
+    <string name="floor">Όροφος</string>
+    <string name="number_of_balconies">Αριθμός μπαλκονιών</string>
+    <string name="heat">Είδος θέρμανσης</string>
+    <string name="renovated">Πρόσφατη ανακαίνιση</string>
+    <string name="garden">Κήπος</string>
+    <string name="postcard">Ταχυδρ. Κώδικας</string>
+    <string name="parking">Πάρκινγκ</string>
+    <string name="predict">Κάνε Εκτίμηση</string>
+    <string name="price">Η τιμή του ακινήτου σου είναι:</string>
+    <string name="select">Τοποθεσία</string>
+    <string name="lets_begin">LETS BEGIN</string>
+    <string name="welcome_text">Remember this is an AI model the more precise you are on your answers the better the result will be.</string>
+    <string name="welcome_to_house_price_prediction">Welcome to house price prediction</string>
+    <string name="Square_meters">Τετραγωνικά Μέτρα</string>
+    <string name="Postcode">Ταχυδρ. Κώδικας</string>
+
+    <string-array name="location_values">
+        <item>Αθήνα</item>
+        <item>Θεσσαλονίκη</item>
+        <item>Πάτρα</item>
+        <item>Πειραιάς</item>
+        <item>Λάρισα</item>
+        <item>Ηράκλειο</item>
+        <item>Βόλος</item>
+        <item>Ιωάννινα</item>
+        <item>Τρίκαλα</item>
+        <item>Χαλκίδα</item>
+        <item>Σέρρες</item>
+        <item>Αλεξανδρούπολη</item>
+        <item>Ξάνθη</item>
+        <item>Κατερίνη</item>
+        <item>Καλαμάτα</item>
+        <item>Ρόδος</item>
+        <item>Χανιά</item>
+        <item>Κομοτηνή</item>
+        <item>Καβάλα</item>
+        <item>Αγρίνιο</item>
+        <item>Δράμα</item>
+        <item>Βέροια</item>
+    </string-array>
+    <string-array name="construction_material_values">
+        <item>τούβλο</item>
+        <item>ξύλο</item>
+    </string-array>
+    <string-array name="yes_no_values">
+        <item>ναι</item>
+        <item>όχι</item>
+    </string-array>
+    <string-array name="heat_values">
+        <item>κεντρική</item>
+        <item>αυτόνομη</item>
+        <item>αέριο</item>
+        <item>πέλλετ</item>
+    </string-array>
+</resources>
