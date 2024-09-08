@@ -114,7 +114,7 @@ print(f"Train MAE: {train_mae}")
 print(f"Train R²: {train_r2}")
 
 import joblib
-data = {'model': model, 'le_Location':le_Location,'le_Close_to_the_sea':le_Close_to_the_sea, 'le_Close_to_the_center':le_Close_to_the_center, 'le_Heat':le_Heat, 'le_Renovated':le_Renovated, 'le_Garden':le_Garden, 'le_Parking':le_Parking, 'le_View':le_View}
+data = {'model': best_model, 'le_Location':le_Location,'le_Close_to_the_sea':le_Close_to_the_sea, 'le_Close_to_the_center':le_Close_to_the_center, 'le_Heat':le_Heat, 'le_Renovated':le_Renovated, 'le_Garden':le_Garden, 'le_Parking':le_Parking, 'le_View':le_View}
 with open('model.joblib2', 'wb') as file:
    joblib.dump(data, file, compress=True, protocol=-1)
 

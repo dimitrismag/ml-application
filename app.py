@@ -10,7 +10,7 @@ from sklearn.preprocessing import LabelEncoder
 
 with open('model.joblib2', 'rb') as file:
     data = joblib.load(file)
-    reg = data['model']
+    best_model = data['model']
     le_Location = data['le_Location']
     le_Close_to_the_sea = data['le_Close_to_the_sea']
     le_Close_to_the_center = data['le_Close_to_the_center']
@@ -31,7 +31,7 @@ def home():
 def predict():
     Location = request.form.get('Location')
     Square_feet = int(request.form.get('Square_feet'))
-    Bedrooms = int(request.form.get('Bedrooms'))
+    Rooms = int(request.form.get('Rooms'))
     Bathrooms = int(request.form.get('Bathrooms'))
     Construction_year = int(request.form.get('Construction_year'))
     Number_of_levels = int(request.form.get('Number_of_levels'))
@@ -55,8 +55,8 @@ def predict():
     parking_encoded = le_Parking.transform([Parking])[0]
     View_encoded = le_View.transform([View])[0]
 
-    input_query = np.array([[location_encoded, Square_feet, Bedrooms, Bathrooms, Construction_year, Number_of_levels, close_to_the_sea_encoded, close_to_the_center_encoded, Floor, Number_of_balconies, heat_encoded, renovated_encoded, garden_encoded, Postcard, parking_encoded, View_encoded]])
-    result = reg.predict(input_query)[0]
+    input_query = np.array([[location_encoded, Square_feet, Rooms, Bathrooms, Construction_year, Number_of_levels, close_to_the_sea_encoded, close_to_the_center_encoded, Floor, Number_of_balconies, heat_encoded, renovated_encoded, garden_encoded, Postcard, parking_encoded, View_encoded]])
+    result = best_model.predict(input_query)[0]
     formatted_price = '{:.2f} €'.format(result)
     return jsonify({'price':formatted_price})
 
