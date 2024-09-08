@@ -31,7 +31,7 @@ def home():
 def predict():
     Location = request.form.get('Location')
     Square_feet = int(request.form.get('Square_feet'))
-    Bedrooms = int(request.form.get('Bedrooms'))
+    Rooms = int(request.form.get('Rooms'))
     Bathrooms = int(request.form.get('Bathrooms'))
     Construction_year = int(request.form.get('Construction_year'))
     Number_of_levels = int(request.form.get('Number_of_levels'))
