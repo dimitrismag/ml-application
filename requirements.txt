@@ -105,3 +105,4 @@ webencodings==0.5.1
 websocket-client==1.4.2
 Werkzeug==3.0.3
 xgboost==2.1.1
+gunicorn
