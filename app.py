@@ -8,7 +8,7 @@ from sklearn.preprocessing import LabelEncoder
 
 
 
-with open('model.joblib2', 'rb') as file:
+with open('model.joblib1', 'rb') as file:
     data = joblib.load(file)
     best_model = data['model']
     le_Location = data['le_Location']

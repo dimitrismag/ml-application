@@ -1,7 +1,9 @@
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.preprocessing import StandardScaler
+import xgboost as xgb
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 
 
 df=pd.read_excel(r"C:\Users\PC\Desktop\master thesis(ΑυτόματηΑνάκτηση3).xlsx")
@@ -41,44 +43,28 @@ le_View = LabelEncoder()
 df['View'] = le_View.fit_transform(df['View'])
 df["View"].unique
 
-X=df.drop(columns=['Price','Construction_material'])
+X=df.drop(columns=['Price'])
 y=df['Price']
 
 X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.3, random_state=42) 
 X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.333, random_state=42)  # 20% validation, 10% test
 
-from sklearn.metrics import make_scorer
-from sklearn.model_selection import GridSearchCV, KFold
-model = RandomForestRegressor(random_state=42)
+model = xgb.XGBRegressor(objective='reg:squarederror', random_state=42)
 
-# Define the parameter grid
-param_grid = {
-    'n_estimators': [100, 300, 500],           # Number of trees in the forest
-    'max_depth': [10, 20, 30, None],           # Maximum depth of the tree (None for no limit)
-    'min_samples_split': [2, 5, 10],           # Minimum samples required to split an internal node
-    'min_samples_leaf': [1, 2, 4],             # Minimum samples required to be at a leaf node
-    'max_features': ['sqrt', 'log2'],  # Number of features to consider for the best split
-    'criterion': ['squared_error'], 
-}
+best_model = xgb.XGBRegressor(
+    n_estimators=500,           # Best number of trees
+    learning_rate=0.1,          # Best learning rate
+    max_depth=3,                # Best tree depth
+    subsample=0.8,              # Best subsample ratio of training instances
+    colsample_bytree=1.0,       # Best subsample ratio of columns for each tree
+    gamma=0,                    # Best minimum loss reduction to make a partition
+    min_child_weight=1,         # Best minimum sum of weights of all observations needed in a child
+    reg_alpha=1.0,              # Best L1 regularization term on weights
+    reg_lambda=1.5              # Best L2 regularization term on weights
+)
 
-# Define cross-validation strategy
-kf = KFold(n_splits=5, shuffle=True, random_state=42)
-
-# Set up GridSearchCV
-grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=kf, scoring='neg_mean_squared_error', n_jobs=-1)
-
-# Fit GridSearchCV
-grid_search.fit(X, y)
-
-# Get the best parameters and score
-best_params = grid_search.best_params_
-best_score = -grid_search.best_score_
-
-print(f"Best parameters: {best_params}")
-print(f"Best cross-validated MSE: {best_score}")
-
-# Optionally, fit the best model and evaluate on the test set
-best_model = grid_search.best_estimator_
+# Fit the model to your data
+best_model.fit(X, y)
 
 
 
@@ -115,6 +101,6 @@ print(f"Train R²: {train_r2}")
 
 import joblib
 data = {'model': best_model, 'le_Location':le_Location,'le_Close_to_the_sea':le_Close_to_the_sea, 'le_Close_to_the_center':le_Close_to_the_center, 'le_Heat':le_Heat, 'le_Renovated':le_Renovated, 'le_Garden':le_Garden, 'le_Parking':le_Parking, 'le_View':le_View}
-with open('model.joblib2', 'wb') as file:
+with open('model.joblib1', 'wb') as file:
    joblib.dump(data, file, compress=True, protocol=-1)
 
